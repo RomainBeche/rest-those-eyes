@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		E829EA822D9C12B500F92970 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E829EA682D9C12B400F92970 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E829EA6F2D9C12B400F92970;
+			remoteInfo = RestThoseEyes;
+		};
+		E829EA8C2D9C12B500F92970 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E829EA682D9C12B400F92970 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E829EA6F2D9C12B400F92970;
+			remoteInfo = RestThoseEyes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E829EA702D9C12B400F92970 /* RestThoseEyes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestThoseEyes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E829EA812D9C12B500F92970 /* RestThoseEyesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestThoseEyesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E829EA8B2D9C12B500F92970 /* RestThoseEyesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestThoseEyesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E829EA722D9C12B400F92970 /* RestThoseEyes */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RestThoseEyes;
+			sourceTree = "<group>";
+		};
+		E829EA842D9C12B500F92970 /* RestThoseEyesTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RestThoseEyesTests;
+			sourceTree = "<group>";
+		};
+		E829EA8E2D9C12B500F92970 /* RestThoseEyesUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RestThoseEyesUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E829EA6D2D9C12B400F92970 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E829EA7E2D9C12B500F92970 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E829EA882D9C12B500F92970 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E829EA672D9C12B400F92970 = {
+			isa = PBXGroup;
+			children = (
+				E829EA722D9C12B400F92970 /* RestThoseEyes */,
+				E829EA842D9C12B500F92970 /* RestThoseEyesTests */,
+				E829EA8E2D9C12B500F92970 /* RestThoseEyesUITests */,
+				E829EA712D9C12B400F92970 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E829EA712D9C12B400F92970 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E829EA702D9C12B400F92970 /* RestThoseEyes.app */,
+				E829EA812D9C12B500F92970 /* RestThoseEyesTests.xctest */,
+				E829EA8B2D9C12B500F92970 /* RestThoseEyesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E829EA6F2D9C12B400F92970 /* RestThoseEyes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E829EA952D9C12B500F92970 /* Build configuration list for PBXNativeTarget "RestThoseEyes" */;
+			buildPhases = (
+				E829EA6C2D9C12B400F92970 /* Sources */,
+				E829EA6D2D9C12B400F92970 /* Frameworks */,
+				E829EA6E2D9C12B400F92970 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E829EA722D9C12B400F92970 /* RestThoseEyes */,
+			);
+			name = RestThoseEyes;
+			packageProductDependencies = (
+			);
+			productName = RestThoseEyes;
+			productReference = E829EA702D9C12B400F92970 /* RestThoseEyes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E829EA802D9C12B500F92970 /* RestThoseEyesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E829EA982D9C12B500F92970 /* Build configuration list for PBXNativeTarget "RestThoseEyesTests" */;
+			buildPhases = (
+				E829EA7D2D9C12B500F92970 /* Sources */,
+				E829EA7E2D9C12B500F92970 /* Frameworks */,
+				E829EA7F2D9C12B500F92970 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E829EA832D9C12B500F92970 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E829EA842D9C12B500F92970 /* RestThoseEyesTests */,
+			);
+			name = RestThoseEyesTests;
+			packageProductDependencies = (
+			);
+			productName = RestThoseEyesTests;
+			productReference = E829EA812D9C12B500F92970 /* RestThoseEyesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E829EA8A2D9C12B500F92970 /* RestThoseEyesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E829EA9B2D9C12B500F92970 /* Build configuration list for PBXNativeTarget "RestThoseEyesUITests" */;
+			buildPhases = (
+				E829EA872D9C12B500F92970 /* Sources */,
+				E829EA882D9C12B500F92970 /* Frameworks */,
+				E829EA892D9C12B500F92970 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E829EA8D2D9C12B500F92970 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E829EA8E2D9C12B500F92970 /* RestThoseEyesUITests */,
+			);
+			name = RestThoseEyesUITests;
+			packageProductDependencies = (
+			);
+			productName = RestThoseEyesUITests;
+			productReference = E829EA8B2D9C12B500F92970 /* RestThoseEyesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E829EA682D9C12B400F92970 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					E829EA6F2D9C12B400F92970 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					E829EA802D9C12B500F92970 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = E829EA6F2D9C12B400F92970;
+					};
+					E829EA8A2D9C12B500F92970 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = E829EA6F2D9C12B400F92970;
+					};
+				};
+			};
+			buildConfigurationList = E829EA6B2D9C12B400F92970 /* Build configuration list for PBXProject "RestThoseEyes" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E829EA672D9C12B400F92970;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E829EA712D9C12B400F92970 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E829EA6F2D9C12B400F92970 /* RestThoseEyes */,
+				E829EA802D9C12B500F92970 /* RestThoseEyesTests */,
+				E829EA8A2D9C12B500F92970 /* RestThoseEyesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E829EA6E2D9C12B400F92970 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E829EA7F2D9C12B500F92970 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E829EA892D9C12B500F92970 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E829EA6C2D9C12B400F92970 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E829EA7D2D9C12B500F92970 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E829EA872D9C12B500F92970 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E829EA832D9C12B500F92970 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E829EA6F2D9C12B400F92970 /* RestThoseEyes */;
+			targetProxy = E829EA822D9C12B500F92970 /* PBXContainerItemProxy */;
+		};
+		E829EA8D2D9C12B500F92970 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E829EA6F2D9C12B400F92970 /* RestThoseEyes */;
+			targetProxy = E829EA8C2D9C12B500F92970 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E829EA932D9C12B500F92970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E829EA942D9C12B500F92970 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		E829EA962D9C12B500F92970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RestThoseEyes/RestThoseEyes.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RestThoseEyes/Preview Content\"";
+				DEVELOPMENT_TEAM = FCZ6G2UCN7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Romain-Beche.RestThoseEyes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E829EA972D9C12B500F92970 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RestThoseEyes/RestThoseEyes.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RestThoseEyes/Preview Content\"";
+				DEVELOPMENT_TEAM = FCZ6G2UCN7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Romain-Beche.RestThoseEyes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E829EA992D9C12B500F92970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FCZ6G2UCN7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Romain-Beche.RestThoseEyesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RestThoseEyes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RestThoseEyes";
+			};
+			name = Debug;
+		};
+		E829EA9A2D9C12B500F92970 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FCZ6G2UCN7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Romain-Beche.RestThoseEyesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RestThoseEyes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RestThoseEyes";
+			};
+			name = Release;
+		};
+		E829EA9C2D9C12B500F92970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FCZ6G2UCN7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Romain-Beche.RestThoseEyesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = RestThoseEyes;
+			};
+			name = Debug;
+		};
+		E829EA9D2D9C12B500F92970 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FCZ6G2UCN7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Romain-Beche.RestThoseEyesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = RestThoseEyes;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E829EA6B2D9C12B400F92970 /* Build configuration list for PBXProject "RestThoseEyes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E829EA932D9C12B500F92970 /* Debug */,
+				E829EA942D9C12B500F92970 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E829EA952D9C12B500F92970 /* Build configuration list for PBXNativeTarget "RestThoseEyes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E829EA962D9C12B500F92970 /* Debug */,
+				E829EA972D9C12B500F92970 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E829EA982D9C12B500F92970 /* Build configuration list for PBXNativeTarget "RestThoseEyesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E829EA992D9C12B500F92970 /* Debug */,
+				E829EA9A2D9C12B500F92970 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E829EA9B2D9C12B500F92970 /* Build configuration list for PBXNativeTarget "RestThoseEyesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E829EA9C2D9C12B500F92970 /* Debug */,
+				E829EA9D2D9C12B500F92970 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E829EA682D9C12B400F92970 /* Project object */;
+}
