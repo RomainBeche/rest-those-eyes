@@ -7,18 +7,18 @@
   <meta name="description" content="A lightweight Mac menu bar app that helps you follow the 20-20-20 rule with private, flexible break reminders." />
   <style>
     :root {
-      --bg: #f6f7f9;
-      --surface: rgba(255,255,255,0.82);
-      --surface-strong: rgba(255,255,255,0.95);
-      --surface-alt: #eef1f5;
-      --border: rgba(15, 23, 42, 0.08);
-      --border-strong: rgba(15, 23, 42, 0.12);
-      --text: #111827;
-      --muted: #5b6472;
-      --faint: #7c8697;
-      --accent: #0f766e;
-      --accent-hover: #115e59;
-      --accent-soft: rgba(15, 118, 110, 0.10);
+      --bg: #0f0f0f;
+      --surface: rgba(25,25,25,0.82);
+      --surface-strong: rgba(40,40,40,0.95);
+      --surface-alt: #1a1a1a;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.12);
+      --text: #e8e8e8;
+      --muted: #a8a8a8;
+      --faint: #808080;
+      --accent: #db34f2;
+      --accent-hover: #c71fe0;
+      --accent-soft: rgba(219, 52, 242, 0.15);
       --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.06);
       --shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.10);
       --radius-sm: 14px;
@@ -36,8 +36,8 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 26%),
-        linear-gradient(180deg, #fbfcfd 0%, var(--bg) 100%);
+        radial-gradient(circle at top left, rgba(219, 52, 242, 0.06), transparent 26%),
+        linear-gradient(180deg, #1a1a1a 0%, var(--bg) 100%);
       line-height: 1.6;
     }
 
@@ -48,7 +48,7 @@
       position: absolute;
       left: -9999px;
       top: 1rem;
-      background: #fff;
+      background: #2a2a2a;
       color: var(--text);
       padding: 0.75rem 1rem;
       border-radius: 999px;
@@ -68,8 +68,8 @@
       z-index: 40;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(246, 247, 249, 0.72);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+      background: rgba(15, 15, 15, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .nav {
@@ -86,15 +86,16 @@
       gap: 0.85rem;
       font-weight: 700;
       letter-spacing: -0.02em;
+      font-size: 1.1rem;
     }
 
     .brand-mark {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 3rem;
+      height: 3rem;
       border-radius: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(238,241,245,0.9));
+      background: linear-gradient(180deg, rgba(40,40,40,0.95), rgba(25,25,25,0.9));
       border: 1px solid var(--border);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), var(--shadow-sm);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), var(--shadow-sm);
       display: grid;
       place-items: center;
       color: var(--accent);
@@ -116,7 +117,7 @@
 
     .nav-links a:hover,
     .nav-links a:focus-visible {
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.08);
       color: var(--text);
       outline: none;
     }
@@ -182,13 +183,13 @@
     .button-primary {
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 12px 28px rgba(15, 118, 110, 0.18);
+      box-shadow: 0 12px 28px rgba(219, 52, 242, 0.18);
     }
     .button-primary:hover,
     .button-primary:focus-visible { background: var(--accent-hover); outline: none; }
 
     .button-secondary {
-      background: var(--surface-strong);
+      background: rgba(40, 40, 40, 0.6);
       color: var(--text);
       border-color: var(--border);
       box-shadow: var(--shadow-sm);
@@ -199,7 +200,7 @@
     .button-disabled {
       cursor: not-allowed;
       color: var(--faint);
-      background: rgba(255,255,255,0.65);
+      background: rgba(40, 40, 40, 0.5);
       border-color: var(--border);
       box-shadow: none;
     }
@@ -237,7 +238,7 @@
       gap: 0.45rem;
       padding: 1rem 1.15rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.7);
+      background: rgba(30, 30, 30, 0.7);
     }
 
     .traffic {
@@ -258,7 +259,7 @@
       gap: 1rem;
       padding: 0.9rem 1rem;
       border-radius: 18px;
-      background: rgba(255,255,255,0.92);
+      background: rgba(30, 30, 30, 0.92);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
     }
@@ -285,7 +286,7 @@
     .stat {
       padding: 1rem;
       background: var(--surface-alt);
-      border: 1px solid rgba(15, 23, 42, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 18px;
     }
 
@@ -370,9 +371,9 @@
       margin-top: 1rem;
       padding: 1rem 1.1rem;
       border-radius: 18px;
-      background: rgba(15, 118, 110, 0.08);
-      border: 1px solid rgba(15, 118, 110, 0.12);
-      color: #134e4a;
+      background: rgba(219, 52, 242, 0.1);
+      border: 1px solid rgba(219, 52, 242, 0.2);
+      color: #e8a9f5;
     }
 
     .site-footer {
@@ -383,7 +384,7 @@
     .footer-card {
       padding: 1.2rem 1.4rem;
       border-radius: 24px;
-      background: rgba(255,255,255,0.78);
+      background: rgba(25, 25, 25, 0.78);
       border: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -395,8 +396,8 @@
     code.inline {
       padding: 0.2rem 0.45rem;
       border-radius: 9px;
-      background: rgba(15, 23, 42, 0.05);
-      border: 1px solid rgba(15, 23, 42, 0.05);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 0.92em;
     }
@@ -432,11 +433,8 @@
   <header class="site-header">
     <div class="site-shell nav">
       <a class="brand" href="#top" aria-label="Rest Those Eyes home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.5 12C5.7 8.3 8.58 6.45 12 6.45C15.42 6.45 18.3 8.3 20.5 12C18.3 15.7 15.42 17.55 12 17.55C8.58 17.55 5.7 15.7 3.5 12Z" stroke="currentColor" stroke-width="1.8"/>
-            <circle cx="12" cy="12" r="3.1" stroke="currentColor" stroke-width="1.8"/>
-          </svg>
+        <span aria-hidden="true">
+          <img src="RestThoseEyes-header-icon-macOS-Default-128x128@1x.png" alt="App icon" style="width:1.5rem;height:1.5rem;" />
         </span>
         <span>Rest Those Eyes</span>
       </a>
@@ -461,40 +459,13 @@
         <p class="hero-note">Before publishing, replace the App Store button with your real listing URL.</p>
       </div>
 
-      <aside class="window-card" aria-label="App preview">
-        <div class="window-topbar" aria-hidden="true">
-          <span class="traffic red"></span>
-          <span class="traffic yellow"></span>
-          <span class="traffic green"></span>
-        </div>
-        <div class="window-body">
-          <div class="mini-menu-bar">
-            <div>
-              <div style="font-size:0.86rem;color:var(--faint);">Next break</div>
-              <div style="font-size:1.45rem;font-weight:700;letter-spacing:-0.04em;">12:48</div>
-            </div>
-            <div style="padding:0.65rem 0.9rem;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700;">Snooze 5 min</div>
-          </div>
-          <div class="timer-stack">
-            <div class="panel">
-              <div style="color:var(--faint);font-size:0.9rem;">Today's focus time</div>
-              <div style="font-size:2rem;font-weight:750;letter-spacing:-0.05em;margin-top:0.2rem;">4h 20m</div>
-            </div>
-            <div class="stat-grid">
-              <div class="stat"><span style="color:var(--faint);font-size:0.86rem;">Breaks taken</span><strong>9</strong></div>
-              <div class="stat"><span style="color:var(--faint);font-size:0.86rem;">Interval</span><strong>20m</strong></div>
-              <div class="stat"><span style="color:var(--faint);font-size:0.86rem;">Break length</span><strong>20s</strong></div>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <img src="RTE_Screenshot0.png" alt="App preview" style="max-width:480px;width:100%;border-radius:var(--radius-lg);margin-left:auto;" />
     </section>
 
     <section id="features">
       <div class="section-header">
         <div>
           <h2>Designed to feel native on macOS.</h2>
-          <p class="section-copy">A clean support and marketing page for a lightweight Mac utility should feel calm, precise, and trustworthy. This layout keeps the product clear without looking like a generic SaaS template.</p>
         </div>
       </div>
 
@@ -529,7 +500,6 @@
       <div class="section-header">
         <div>
           <h2>Support</h2>
-          <p class="section-copy">Keep the support page direct and frictionless. For a small utility app, the fastest path is usually a GitHub Issues link and a short FAQ.</p>
         </div>
       </div>
 
@@ -538,9 +508,8 @@
           <h3>Need help or want to report a bug?</h3>
           <p>Use GitHub Issues to report bugs, suggest improvements, or ask for help.</p>
           <div class="cta-row" style="margin-top:1.25rem;">
-            <a class="button button-primary" href="https://github.com/YOUR-USERNAME/YOUR-REPO/issues/new/choose" target="_blank" rel="noopener noreferrer">Open GitHub Issues</a>
+            <a class="button button-primary" href="https://github.com/RomainBeche/Rest-Those-Eyes/issues/new/choose" target="_blank" rel="noopener noreferrer">Open GitHub Issues</a>
           </div>
-          <p class="section-note">Replace <code class="inline">YOUR-USERNAME/YOUR-REPO</code> with your actual repository path before publishing.</p>
         </article>
 
         <aside class="support-card">
@@ -603,7 +572,7 @@
   <footer class="site-footer">
     <div class="site-shell footer-card">
       <div>Made by Romain Beche</div>
-      <div>Built for GitHub Pages · Light mode · Single-file static site</div>
+      <div>Built for GitHub Pages · Dark mode · Single-file static site</div>
     </div>
   </footer>
 </body>
