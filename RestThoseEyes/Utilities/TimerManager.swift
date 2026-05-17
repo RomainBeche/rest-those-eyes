@@ -154,7 +154,7 @@ private extension TimerManager {
 private extension UNMutableNotificationContent {
     func configuredContent() -> UNMutableNotificationContent {
         self.title = Localization.Notifications.title.key
-        self.body = Localization.Notifications.body.key
+        self.body = Localization.Notifications.formattedBody(seconds: SettingsManager.shared.breakDurationSeconds)
         self.categoryIdentifier = "timerCategory"
         self.interruptionLevel = .timeSensitive
         self.sound = SettingsManager.shared.soundAlerts ? .default : nil

@@ -43,18 +43,22 @@ private struct TimerSection: View {
     @EnvironmentObject var settings: SettingsManager
 
     var body: some View {
-        Section("Timer") {
+        Section {
             Stepper(value: $settings.workDurationMinutes, in: 10...60) {
                 LabeledContent("Work interval:", value: "\(settings.workDurationMinutes) min")
             }
 
-            Stepper(value: $settings.breakDurationSeconds, in: 20...60, step: 5) {
+            Stepper(value: $settings.breakDurationSeconds, in: 20...120, step: 10) {
                 LabeledContent("Break duration:", value: "\(settings.breakDurationSeconds) sec")
             }
 
             Stepper(value: $settings.snoozeDurationMinutes, in: 1...10) {
                 LabeledContent("Snooze duration:", value: "\(settings.snoozeDurationMinutes) min")
             }
+        } header: {
+            Text("Timer")
+        } footer: {
+            Text("The changes will take effect starting with the next phase.")
         }
     }
 }

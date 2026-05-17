@@ -40,13 +40,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Look away from your screen for 20 seconds."
+            "value" : "Look away from your screen for %d seconds."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regardez au loin pendant 20 secondes."
+            "value" : "Regardez au loin pendant %d secondes."
           }
         }
       }
@@ -114,22 +114,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paramètres RestThoseEyes"
-          }
-        }
-      }
-    },
-    "Snooze duration:" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Snooze duration:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durée du snooze :"
           }
         }
       }
@@ -235,6 +219,25 @@
           }
         }
       }
+    },
+    "Snooze duration:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snooze duration:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée du snooze :"
+          }
+        }
+      }
+    },
+    "The changes will take effect starting with the next phase." : {
+
     },
     "Timer" : {
       "localizations" : {

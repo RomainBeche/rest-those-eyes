@@ -66,6 +66,10 @@ struct Localization {
         var key: String {
             NSLocalizedString(rawValue, comment: "")
         }
+
+        static func formattedBody(seconds: Int) -> String {
+            String(format: NSLocalizedString(body.rawValue, comment: ""), seconds)
+        }
     }
 
     enum Actions: String {

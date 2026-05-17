@@ -25,7 +25,6 @@ struct RestThoseEyesApp: App {
                 .environmentObject(timerManager)
         } label: {
             Image(systemName: timerManager.isBreak ? "eye.slash.fill" : "eye.fill")
-                .foregroundStyle(timerManager.isBreak ? Color.green : Color.purple)
                 .symbolEffect(.bounce, value: timerManager.isBreak)
                 .task {
                     NotificationDelegate.shared.timerManager = timerManager
