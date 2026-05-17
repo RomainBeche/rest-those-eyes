@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Rest Those Eyes</title>
+  <meta name="description" content="Privacy Policy for Rest Those Eyes, a macOS menu bar app that works entirely offline and does not collect personal data." />
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: rgba(25,25,25,0.82);
+      --surface-strong: rgba(40,40,40,0.95);
+      --surface-alt: #1a1a1a;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.12);
+      --text: #e8e8e8;
+      --muted: #a8a8a8;
+      --faint: #808080;
+      --accent: #db34f2;
+      --accent-hover: #c71fe0;
+      --accent-soft: rgba(219, 52, 242, 0.15);
+      --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.10);
+      --radius-sm: 14px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --content: 1120px;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(219, 52, 242, 0.06), transparent 26%),
+        linear-gradient(180deg, #1a1a1a 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 1rem;
+      background: #2a2a2a;
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      z-index: 100;
+    }
+    .skip-link:focus { left: 1rem; }
+
+    .site-shell {
+      width: min(calc(100% - 2rem), var(--content));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(15, 15, 15, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1.1rem;
+    }
+
+    .brand-mark {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(40,40,40,0.95), rgba(25,25,25,0.9));
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), var(--shadow-sm);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      outline: none;
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    main { padding: 3rem 0 3.5rem; }
+
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    h1 {
+      margin: 1rem 0 0.5rem;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      max-width: 18ch;
+    }
+
+    .lead {
+      margin: 0.2rem 0 0;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .policy-card {
+      margin-top: 2.4rem;
+      padding: 1.8rem 1.8rem 2.1rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .policy-section + .policy-section {
+      margin-top: 1.6rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .policy-section h2 {
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.3rem;
+    }
+
+    .policy-section p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      max-width: 80ch;
+    }
+
+    .policy-section ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .policy-section li + li { margin-top: 0.25rem; }
+
+    .meta-line {
+      margin-top: 0.4rem;
+      font-size: 0.92rem;
+      color: var(--faint);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--faint);
+    }
+
+    code.inline {
+      padding: 0.18rem 0.4rem;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 720px) {
+      .site-shell { width: min(calc(100% - 1.25rem), var(--content)); }
+      .nav { flex-direction: column; align-items: flex-start; }
+      main { padding-top: 2.2rem; }
+      .policy-card { padding: 1.4rem 1.35rem 1.7rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-shell nav">
+      <a class="brand" href="index.html" aria-label="Rest Those Eyes home">
+        <span aria-hidden="true">
+          <img src="Assets/RestThoseEyes-header-icon-macOS-Default-128x128@1x.png" alt="App icon" style="width:1.5rem;height:1.5rem;" />
+        </span>
+        <span>Rest Those Eyes</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#support">Support</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="site-shell">
+    <header class="page-header">
+      <span class="eyebrow">Privacy Policy</span>
+      <h1>How Rest Those Eyes handles your data.</h1>
+      <p class="lead">A concise explanation of what the app stores locally on your Mac, what it never collects, and how you stay in control.</p>
+      <p class="meta-line"><strong>Last updated:</strong> May 17, 2026</p>
+    </header>
+
+    <article class="policy-card">
+      <section class="policy-section" id="introduction">
+        <h2>1. Introduction</h2>
+        <p>This Privacy Policy explains how the macOS application <strong>Rest Those Eyes</strong> ("the App") handles information. The App is intentionally designed to work entirely offline and to avoid collecting personal data.</p>
+        <p>By using the App, you agree to the practices described in this Privacy Policy.</p>
+      </section>
+
+      <section class="policy-section" id="controller">
+        <h2>2. Data controller</h2>
+        <p>The data controller for the App (under data protection laws such as the GDPR) is:</p>
+        <p><strong>Romain Beche</strong><br />Based in France</p>
+        <p>There is no separate company or third-party entity operating the App.</p>
+        <p>If you have questions about this Privacy Policy, you can open an issue in the public GitHub repository for the App. There is no dedicated email address; GitHub Issues is the sole contact channel for privacy and support.</p>
+      </section>
+
+      <section class="policy-section" id="summary">
+        <h2>3. Summary of how the App handles data</h2>
+        <ul>
+          <li>The App works entirely offline once installed from the Mac App Store.</li>
+          <li>The App does not create an account, does not collect personal data, and does not send any data to external servers.</li>
+          <li>All configuration and usage information is stored locally on your Mac in <strong>UserDefaults</strong> (<code class="inline">~/Library/Preferences/[bundle-id].plist</code>).</li>
+          <li>No custom crash or analytics services are integrated. Apple may collect crash data separately under its own terms.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section" id="no-collection">
+        <h2>4. Information the App does not collect</h2>
+        <p>The App is explicitly designed to avoid collecting or transmitting personal data. In particular, the App does not:</p>
+        <ul>
+          <li>Collect your name, email address, or other contact details;</li>
+          <li>Collect payment information;</li>
+          <li>Collect or sync data via iCloud, CloudKit, or any other online service;</li>
+          <li>Track your location or IP address;</li>
+          <li>Capture screen contents or keystrokes;</li>
+          <li>Integrate third-party analytics, advertising, or tracking SDKs;</li>
+          <li>Send any usage data, diagnostics, or crash logs to third-party servers.</li>
+        </ul>
+        <p>Any crash reports that may appear in App Store Connect are collected and controlled by Apple under Apple’s own privacy policies and are not initiated or customized by this App.</p>
+      </section>
+
+      <section class="policy-section" id="local-storage">
+        <h2>5. Information stored locally on your device</h2>
+        <p>The App stores a small amount of configuration and usage information locally on your Mac using the standard macOS UserDefaults mechanism:</p>
+        <p><strong>Storage location:</strong> <code class="inline">~/Library/Preferences/[bundle-id].plist</code></p>
+        <p>No other files, databases, or logs are created.</p>
+        <p><strong>5.1. User settings</strong></p>
+        <p>The following user settings are stored locally so the App can function as configured:</p>
+        <ul>
+          <li>Work interval;</li>
+          <li>Break duration;</li>
+          <li>Snooze duration;</li>
+          <li>Whether notifications are enabled;</li>
+          <li>Whether sound alerts are enabled;</li>
+          <li>Launch-at-login state.</li>
+        </ul>
+        <p>These values are local configuration only and are not transmitted or shared.</p>
+        <p><strong>5.2. Daily usage statistics</strong></p>
+        <p>The App also stores lightweight daily statistics to show your activity for the current day:</p>
+        <ul>
+          <li>Number of breaks taken today;</li>
+          <li>Total focus time (in seconds) for today;</li>
+          <li>Total away time (in seconds) for today;</li>
+          <li>Date of the last session (used to reset these stats at midnight).</li>
+        </ul>
+        <p>These statistics are purely functional (to display your daily usage inside the App) and are kept locally. The App uses the stored date to reset the daily counters automatically when a new day starts.</p>
+        <p>No detailed history over multiple days is kept beyond these aggregated per-day values, and no logs or detailed timelines of your activity are stored.</p>
+      </section>
+
+      <section class="policy-section" id="legal-basis">
+        <h2>6. Legal basis for processing (GDPR)</h2>
+        <p>To the extent that the information listed above is considered “personal data” under the General Data Protection Regulation (GDPR), the processing is based on:</p>
+        <p><strong>Performance of a contract (Article 6(1)(b) GDPR)</strong> – the local storage and processing of your settings and daily statistics is necessary to provide the features you choose to use in the App (for example, remembering your chosen interval or displaying how many breaks you have taken today).</p>
+        <p>The App does not process data for marketing, profiling, or advertising purposes.</p>
+      </section>
+
+      <section class="policy-section" id="network-and-third-parties">
+        <h2>7. No network requests and no third-party sharing</h2>
+        <p>The App does not make any network requests and does not communicate with external servers once installed on your Mac. As a result:</p>
+        <ul>
+          <li>No data is sent to third parties;</li>
+          <li>No data is shared with advertisers, analytics providers, or other external services;</li>
+          <li>No data leaves your device as part of the App’s normal operation.</li>
+        </ul>
+        <p>The only possible exception is Apple’s own crash reporting system, which operates independently of this App and is governed by Apple’s privacy and usage terms.</p>
+      </section>
+
+      <section class="policy-section" id="system-integrations">
+        <h2>8. System integrations and frameworks</h2>
+        <p>The App uses only standard Apple frameworks to function on macOS, such as:</p>
+        <ul>
+          <li><strong>UserNotifications</strong> – to display break reminders;</li>
+          <li><strong>AppKit</strong> and/or <strong>SwiftUI</strong> – for the user interface;</li>
+          <li><strong>ServiceManagement / SMAppService</strong> – to support launch at login.</li>
+        </ul>
+        <p>No third-party frameworks or SDKs are integrated. No external analytics, advertising, or tracking frameworks are used.</p>
+      </section>
+
+      <section class="policy-section" id="retention-and-deletion">
+        <h2>9. Data retention and deletion</h2>
+        <p><strong>Retention.</strong> All data (settings and daily statistics) is stored locally for as long as the App remains installed, or until you reset or remove it. Daily statistics are automatically reset by the App when a new day begins.</p>
+        <p><strong>Deletion.</strong> You can delete the locally stored data in the following ways:</p>
+        <ul>
+          <li>Uninstall the App – removing the App from your Mac will typically remove the associated preferences file (<code class="inline">~/Library/Preferences/[bundle-id].plist</code>) as part of standard macOS behavior.</li>
+          <li>Manually delete preferences – advanced users can manually delete the preferences file from the <code class="inline">~/Library/Preferences/</code> folder if they wish to reset the App completely.</li>
+        </ul>
+        <p>Because the App does not store data on external servers, uninstalling or deleting the preferences file removes the data; there is no remote copy.</p>
+      </section>
+
+      <section class="policy-section" id="rights">
+        <h2>10. Your rights</h2>
+        <p>Since data is stored only on your device and never transmitted, many rights under data protection laws (such as the GDPR) translate into local control actions:</p>
+        <ul>
+          <li><strong>Right of access and rectification</strong> – you can view and change your settings directly in the App at any time.</li>
+          <li><strong>Right to erasure (right to be forgotten)</strong> – you may delete the App and its local data as described above.</li>
+          <li><strong>Right to restriction or objection</strong> – you can disable or stop using any feature (for example, turn off notifications or disable launch at login).</li>
+        </ul>
+        <p>If you have questions about how this applies to you, you can open an issue in the GitHub repository for the App and describe your request. However, since no server-side storage or profiles exist, the practical effect of many GDPR rights is that you control or delete data on your own device.</p>
+      </section>
+
+      <section class="policy-section" id="children">
+        <h2>11. Children’s privacy</h2>
+        <p>The App is not directed at children under 13 and is intended for general audiences. It does not contain user-generated content, social features, in-app purchases, or age-restricted material.</p>
+        <p>Because the App does not collect personal data or create accounts, it does not knowingly collect information from children. If you believe that a child under 13 is using the App in a way that raises privacy concerns, you can open an issue in the GitHub repository to discuss it.</p>
+      </section>
+
+      <section class="policy-section" id="changes">
+        <h2>12. Changes to this Privacy Policy</h2>
+        <p>This Privacy Policy may be updated from time to time to reflect:</p>
+        <ul>
+          <li>Changes in the App’s behavior or features;</li>
+          <li>Changes in applicable law or regulatory guidance;</li>
+          <li>Clarifications or improvements to the wording.</li>
+        </ul>
+        <p>When the Policy changes, the updated version will be made available on this page, with a revised “Last updated” date at the top. If a future version of the App were ever to introduce network features or remote services, this Policy would be revised in advance to explain what changes, what data (if any) is transmitted, and for what purpose.</p>
+      </section>
+
+      <section class="policy-section" id="contact">
+        <h2>13. Contact</h2>
+        <p>If you have questions about this Privacy Policy or how the App handles data, you can create an issue in the public GitHub repository for the App:</p>
+        <p><strong>GitHub Issues:</strong> <code class="inline">https://github.com/RomainBeche/rest-those-eyes/issues</code></p>
+        <p>This is the sole official channel for privacy-related requests and inquiries.</p>
+      </section>
+    </article>
+  </main>
+
+  <script>
+    function setActiveNavLink() {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      const privacyLink = document.querySelector('.nav-links a[href="privacy.html"]');
+      if (privacyLink) privacyLink.classList.add('active');
+    }
+
+    setActiveNavLink();
+  </script>
+</body>
+</html>
