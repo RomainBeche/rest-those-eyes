@@ -6,89 +6,274 @@
 //
 
 import SwiftUI
+import AppKit
+
+// MARK: - Settings Tab
+
+private enum SettingsTab: String, CaseIterable, Identifiable {
+    case timer = "Timer"
+    case notifications = "Notifications"
+    case behavior = "Behavior"
+    case support = "Support"
+
+    var id: String { rawValue }
+
+    // Decoupled from rawValue so display strings can be localized independently
+    var title: LocalizedStringKey {
+        switch self {
+        case .timer: "Timer"
+        case .notifications: "Notifications"
+        case .behavior: "Behavior"
+        case .support: "Support"
+        }
+    }
+
+    var systemImage: String {
+        switch self {
+        case .timer: "timer"
+        case .notifications: "bell.fill"
+        case .behavior: "gearshape.fill"
+        case .support: "questionmark.circle.fill"
+        }
+    }
+}
+
+// MARK: - Main View
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsManager
-    @Environment(\.dismiss) private var dismiss
+    @State private var selection: SettingsTab? = .timer
 
     var body: some View {
-        VStack(spacing: 0) {
-            Form {
-                TimerSection()
-                NotificationSection()
-                BehaviorSection()
-            }
-            .formStyle(.grouped)
-
-            HStack {
-                Spacer()
-                Button(Localization.Settings.closeButton.key) {
-                    dismiss()
+        NavigationSplitView(columnVisibility: .constant(.all)) {
+            List(selection: $selection) {
+                ForEach(SettingsTab.allCases) { tab in
+                    Label(tab.title, systemImage: tab.systemImage)
+                        .tag(tab)
                 }
-                .keyboardShortcut(.cancelAction)
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+            .listStyle(.sidebar)
+            .navigationTitle("RestThoseEyes")
+            .navigationSplitViewColumnWidth(min: 200, ideal: 200, max: 200)
+            .toolbar(removing: .sidebarToggle)
+        } detail: {
+            switch selection ?? .timer {
+            case .timer: TimerDetailView()
+            case .notifications: NotificationDetailView()
+            case .behavior: BehaviorDetailView()
+            case .support: SupportDetailView()
+            }
         }
-        .padding(.top)
-        .fixedSize()
         .tint(.purple)
-        .navigationTitle("RestThoseEyes Settings")
+        .frame(minWidth: 520, minHeight: 320)
+        .background(WindowConfigurator())
     }
 }
 
-// MARK: - Timer Section
+// MARK: - Window Configurator
 
-private struct TimerSection: View {
-    @EnvironmentObject var settings: SettingsManager
+// Uses a custom NSView subclass so viewDidMoveToWindow() reliably fires
+// once the view is actually inside the window hierarchy.
+private struct WindowConfigurator: NSViewRepresentable {
+    func makeNSView(context: Context) -> SettingsWindowView { SettingsWindowView() }
+    func updateNSView(_ nsView: SettingsWindowView, context: Context) {}
+}
 
-    var body: some View {
-        Section {
-            Stepper(value: $settings.workDurationMinutes, in: 10...60) {
-                LabeledContent("Work interval:", value: "\(settings.workDurationMinutes) min")
-            }
-
-            Stepper(value: $settings.breakDurationSeconds, in: 20...120, step: 10) {
-                LabeledContent("Break duration:", value: "\(settings.breakDurationSeconds) sec")
-            }
-
-            Stepper(value: $settings.snoozeDurationMinutes, in: 1...10) {
-                LabeledContent("Snooze duration:", value: "\(settings.snoozeDurationMinutes) min")
-            }
-        } header: {
-            Text("Timer")
-        } footer: {
-            Text("The changes will take effect starting with the next phase.")
+private final class SettingsWindowView: NSView {
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        guard let window else { return }
+        applyWindowStyle(window)
+        // Defer sidebar locking one cycle so NavigationSplitView's
+        // NSSplitViewController is fully installed before we query it.
+        DispatchQueue.main.async { [weak window] in
+            guard let window, let contentView = window.contentView else { return }
+            Self.lockSidebar(in: contentView)
         }
     }
+
+    private func applyWindowStyle(_ window: NSWindow) {
+        window.titlebarAppearsTransparent = true
+        window.title = ""
+        window.toolbarStyle = .unified
+        let toolbar = NSToolbar(identifier: "SettingsToolbar")
+        toolbar.allowsUserCustomization = false
+        window.toolbar = toolbar
+    }
+
+    private static func lockSidebar(in contentView: NSView) {
+        guard let splitVC = findSplitViewController(in: contentView) else { return }
+        let item = splitVC.splitViewItems.first
+        item?.canCollapse = false
+        item?.holdingPriority = .defaultHigh
+        item?.minimumThickness = 200
+        item?.maximumThickness = 200
+    }
+
+    private static func findSplitViewController(in view: NSView) -> NSSplitViewController? {
+        if let splitView = view as? NSSplitView,
+           let delegate = splitView.delegate as? NSSplitViewController {
+            return delegate
+        }
+        return view.subviews.lazy.compactMap { findSplitViewController(in: $0) }.first
+    }
 }
 
-// MARK: - Notifications Section
+// MARK: - Shared Helpers
 
-private struct NotificationSection: View {
+private struct SettingsIcon: View {
+    let systemName: String
+    let color: Color
+
+    var body: some View {
+        Image(systemName: systemName)
+            .font(.system(size: 12, weight: .semibold))
+            .foregroundStyle(color)
+            .frame(width: 28, height: 28)
+            .background(RoundedRectangle(cornerRadius: 7).fill(color.opacity(0.12)))
+    }
+}
+
+private extension View {
+    func detailFormStyle() -> some View {
+        formStyle(.grouped).frame(maxWidth: .infinity)
+    }
+}
+
+// MARK: - Timer Detail
+
+private struct TimerDetailView: View {
     @EnvironmentObject var settings: SettingsManager
 
     var body: some View {
-        Section(Localization.Settings.notifications.key) {
-            Toggle(Localization.Settings.enableNotifications.key,
-                   isOn: $settings.showNotifications)
+        Form {
+            Section {
+                Stepper(value: $settings.workDurationMinutes, in: 10...60) {
+                    HStack(spacing: 10) {
+                        SettingsIcon(systemName: "timer", color: .purple)
+                        LabeledContent("Work interval:", value: "\(settings.workDurationMinutes) min")
+                    }
+                }
+                Stepper(value: $settings.breakDurationSeconds, in: 20...120, step: 10) {
+                    HStack(spacing: 10) {
+                        SettingsIcon(systemName: "eye.fill", color: .green)
+                        LabeledContent("Break duration:", value: "\(settings.breakDurationSeconds) sec")
+                    }
+                }
+                Stepper(value: $settings.snoozeDurationMinutes, in: 1...10) {
+                    HStack(spacing: 10) {
+                        SettingsIcon(systemName: "zzz", color: .orange)
+                        LabeledContent("Snooze duration:", value: "\(settings.snoozeDurationMinutes) min")
+                    }
+                }
+            } footer: {
+                Text("The changes will take effect starting with the next phase.")
+            }
+        }
+        .detailFormStyle()
+    }
+}
 
-            Toggle(Localization.Settings.soundAlerts.key,
-                   isOn: $settings.soundAlerts)
+// MARK: - Notifications Detail
+
+private struct NotificationDetailView: View {
+    @EnvironmentObject var settings: SettingsManager
+
+    var body: some View {
+        Form {
+            Section {
+                Toggle(isOn: $settings.showNotifications) {
+                    HStack(spacing: 10) {
+                        SettingsIcon(systemName: "bell.fill", color: .red)
+                        Text(Localization.Settings.enableNotifications.key)
+                    }
+                }
+                Toggle(isOn: $settings.soundAlerts) {
+                    HStack(spacing: 10) {
+                        SettingsIcon(systemName: "speaker.wave.3.fill", color: .blue)
+                        Text(Localization.Settings.soundAlerts.key)
+                    }
+                }
                 .disabled(!settings.showNotifications)
+            }
         }
+        .detailFormStyle()
     }
 }
 
-// MARK: - Behavior Section
+// MARK: - Behavior Detail
 
-private struct BehaviorSection: View {
+private struct BehaviorDetailView: View {
     @EnvironmentObject var settings: SettingsManager
 
     var body: some View {
-        Section(Localization.Settings.behavior.key) {
-            Toggle(Localization.Settings.startAtLogin.key,
-                   isOn: $settings.launchAtLogin)
+        Form {
+            Section {
+                Toggle(isOn: $settings.launchAtLogin) {
+                    HStack(spacing: 10) {
+                        SettingsIcon(systemName: "power", color: .blue)
+                        Text(Localization.Settings.startAtLogin.key)
+                    }
+                }
+            }
         }
+        .detailFormStyle()
+    }
+}
+
+// MARK: - Support Detail
+
+private struct SupportDetailView: View {
+    private static let reportBugURL     = URL(string: "https://github.com/RomainBeche/rest-those-eyes/issues/new?labels=bug")!
+    private static let requestFeatureURL = URL(string: "https://github.com/RomainBeche/rest-those-eyes/issues/new?labels=enhancement")!
+    private static let sourceCodeURL    = URL(string: "https://github.com/RomainBeche/rest-those-eyes")!
+
+    var body: some View {
+        Form {
+            Section {
+                SupportLink(
+                    systemName: "ladybug.fill", color: .red,
+                    title: "Report a Bug",
+                    subtitle: "Help us improve by reporting issues",
+                    url: Self.reportBugURL
+                )
+                SupportLink(
+                    systemName: "lightbulb.fill", color: .yellow,
+                    title: "Request a Feature",
+                    subtitle: "Suggest new features to make the app better",
+                    url: Self.requestFeatureURL
+                )
+                SupportLink(
+                    systemName: "curlybraces", color: .purple,
+                    title: "View Source Code",
+                    subtitle: "RestThoseEyes is open source on GitHub",
+                    url: Self.sourceCodeURL
+                )
+            }
+        }
+        .detailFormStyle()
+    }
+}
+
+private struct SupportLink: View {
+    let systemName: String
+    let color: Color
+    let title: String
+    let subtitle: String
+    let url: URL
+
+    var body: some View {
+        Link(destination: url) {
+            HStack(spacing: 10) {
+                SettingsIcon(systemName: systemName, color: color)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title).foregroundStyle(.primary)
+                    Text(subtitle).font(.caption).foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").font(.caption).foregroundStyle(.tertiary)
+            }
+        }
+        .buttonStyle(.plain)
     }
 }

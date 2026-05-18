@@ -102,7 +102,11 @@
         }
       }
     },
+    "RestThoseEyes" : {
+
+    },
     "RestThoseEyes Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -240,6 +244,7 @@
 
     },
     "Timer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
