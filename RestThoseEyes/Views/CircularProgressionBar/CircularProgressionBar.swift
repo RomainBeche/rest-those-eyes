@@ -8,33 +8,42 @@
 import SwiftUI
 
 struct CircularProgressionBar: View {
-    @ObservedObject var viewModel: CircularProgressionBarViewModel
+    let viewModel: CircularProgressionBarViewModel
 
     var body: some View {
         ZStack {
-            backgroundCircle
-            progressCircle
+            BackgroundCircle(color: viewModel.lineColorBackground)
+            ProgressCircle(fillAmount: viewModel.fillAmount, color: viewModel.lineColor)
         }
     }
+}
 
-    private var backgroundCircle: some View {
+private struct BackgroundCircle: View {
+    let color: Color
+
+    var body: some View {
         ZStack {
             Circle()
                 .stroke(lineWidth: 12)
-                .foregroundStyle(viewModel.lineColorBackground)
+                .foregroundStyle(color)
             Circle()
                 .stroke(lineWidth: 12)
-                .foregroundStyle(viewModel.lineColorBackground)
+                .foregroundStyle(color)
                 .blur(radius: 8, opaque: false)
         }
     }
+}
 
-    private var progressCircle: some View {
+private struct ProgressCircle: View {
+    let fillAmount: Double
+    let color: Color
+
+    var body: some View {
         Circle()
-            .trim(from: 0, to: viewModel.fillAmount)
+            .trim(from: 0, to: fillAmount)
             .stroke(style: StrokeStyle(lineWidth: 18, lineCap: .round, lineJoin: .round))
-            .foregroundStyle(viewModel.lineColor)
-            .rotationEffect(Angle(degrees: -90))
-            .animation(.linear(duration: 1.0), value: viewModel.fillAmount)
+            .foregroundStyle(color)
+            .rotationEffect(.degrees(-90))
+            .animation(.linear(duration: 1.0), value: fillAmount)
     }
 }

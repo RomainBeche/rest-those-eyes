@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-@MainActor final class CircularProgressionBarViewModel: ObservableObject {
-    @Published var fillAmount: CGFloat = 0
-    @Published var timeRemaining: Int
-    @Published var totalTime: Int
+@MainActor @Observable final class CircularProgressionBarViewModel {
+    var fillAmount: Double = 0
+    var timeRemaining: Int
+    var totalTime: Int
     let lineColor: Color
     let lineColorBackground: Color
     let isBreak: Bool
 
-    private var timer: Timer?
-    private var startDate: Date?
-    private var accumulatedPauseTime: TimeInterval = 0
-    private var pausedAt: Date?
-    var onCompletion: (() -> Void)?
-    var onTick: (() -> Void)?
+    @ObservationIgnored private var timer: Timer?
+    @ObservationIgnored private var startDate: Date?
+    @ObservationIgnored private var accumulatedPauseTime: TimeInterval = 0
+    @ObservationIgnored private var pausedAt: Date?
+    @ObservationIgnored var onCompletion: (() -> Void)?
+    @ObservationIgnored var onTick: (() -> Void)?
 
     init(totalTime: Int, lineColor: Color, lineColorBackground: Color, isBreak: Bool) {
         self.totalTime = totalTime
@@ -49,14 +49,14 @@ import SwiftUI
 
     func pauseTimer() {
         guard timer != nil, pausedAt == nil else { return }
-        pausedAt = Date()
+        pausedAt = Date.now
         timer?.invalidate()
         timer = nil
     }
 
     func resumeTimer() {
         guard let paused = pausedAt else { return }
-        accumulatedPauseTime += Date().timeIntervalSince(paused)
+        accumulatedPauseTime += Date.now.timeIntervalSince(paused)
         pausedAt = nil
         let t = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in self?.updateProgress() }
@@ -84,7 +84,7 @@ import SwiftUI
 private extension CircularProgressionBarViewModel {
     func resetTimer() {
         timer?.invalidate()
-        startDate = Date()
+        startDate = Date.now
         fillAmount = 0
         timeRemaining = totalTime
         accumulatedPauseTime = 0
@@ -94,9 +94,9 @@ private extension CircularProgressionBarViewModel {
     func updateProgress() {
         guard let startDate else { return }
 
-        let elapsed = Date().timeIntervalSince(startDate) - accumulatedPauseTime
+        let elapsed = Date.now.timeIntervalSince(startDate) - accumulatedPauseTime
         timeRemaining = max(totalTime - Int(elapsed), 0)
-        fillAmount = min(CGFloat(elapsed) / CGFloat(totalTime), 1)
+        fillAmount = min(elapsed / Double(totalTime), 1)
         onTick?()
 
         if timeRemaining <= 0 {
@@ -113,4 +113,3 @@ private extension CircularProgressionBarViewModel {
         }
     }
 }
-

@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct MenuView: View {
-    @EnvironmentObject private var timerManager: TimerManager
+    @Environment(TimerManager.self) private var timerManager
 
     var body: some View {
         VStack(spacing: 0) {
-            headerSection
-            timerDisplaySection
+            MenuHeaderSection()
+            MenuTimerDisplaySection()
             Divider()
                 .padding(.horizontal, 16)
-            actionButtonsSection
+            MenuActionButtonsSection()
         }
         .frame(width: 320)
         .animation(.spring(duration: 0.45), value: timerManager.isBreak)
         .animation(.spring(duration: 0.25), value: timerManager.isPaused)
     }
+}
 
-    // MARK: - Sections
+// MARK: - Header
 
-    private var headerSection: some View {
+private struct MenuHeaderSection: View {
+    @Environment(TimerManager.self) private var timerManager
+
+    var body: some View {
         HStack(alignment: .center) {
             Text(Localization.Timer.appName.key)
                 .font(.headline)
@@ -47,16 +51,39 @@ struct MenuView: View {
         .padding(.bottom, 10)
     }
 
-    private var timerDisplaySection: some View {
+    private var formattedSessionTime: String {
+        let workSeconds = timerManager.totalWorkSeconds + (timerManager.isBreak ? 0 : timerManager.currentPhaseElapsed)
+        let breakSeconds = timerManager.totalBreakSeconds + (timerManager.isBreak ? timerManager.currentPhaseElapsed : 0)
+        var parts: [String] = []
+        if workSeconds > 0 { parts.append(formatDuration(workSeconds, label: Localization.Timer.statFocus.key)) }
+        if breakSeconds > 0 { parts.append(formatDuration(breakSeconds, label: Localization.Timer.statAway.key)) }
+        return parts.joined(separator: " · ")
+    }
+
+    private func formatDuration(_ seconds: Int, label: String) -> String {
+        let h = seconds / 3600
+        let m = (seconds % 3600) / 60
+        let s = seconds % 60
+        if h > 0 { return "\(h)h \(m)m \(label)" }
+        if m > 0 { return "\(m)m \(label)" }
+        return "\(s)s \(label)"
+    }
+}
+
+// MARK: - Timer Display
+
+private struct MenuTimerDisplaySection: View {
+    @Environment(TimerManager.self) private var timerManager
+
+    var body: some View {
         HStack(spacing: 14) {
             Button {
                 timerManager.togglePause()
             } label: {
                 ZStack {
                     CircularProgressionBar(viewModel: timerManager.currentTimer)
-
                     Image(systemName: timerManager.isPaused ? "play.fill" : "pause.fill")
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.body.bold())
                         .foregroundStyle(phaseColor)
                         .opacity(timerManager.isPaused ? 1 : 0.35)
                 }
@@ -64,6 +91,7 @@ struct MenuView: View {
                 .contentShape(Circle())
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(timerManager.isPaused ? "Resume timer" : "Pause timer")
             .padding(.vertical, 22)
             .padding(.horizontal, 8)
 
@@ -82,7 +110,7 @@ struct MenuView: View {
 
                 if timerManager.breaksTakenToday > 0 {
                     Text(Localization.Timer.formattedBreaksToday(count: timerManager.breaksTakenToday))
-                        .font(.caption2)
+                        .font(.caption)
                         .foregroundStyle(.tertiary)
                         .fontDesign(.rounded)
                         .transition(.opacity.combined(with: .move(edge: .bottom)))
@@ -93,32 +121,6 @@ struct MenuView: View {
         }
         .padding(.horizontal, 16)
     }
-
-    private var actionButtonsSection: some View {
-        HStack {
-            SettingsLink {
-                Image(systemName: "gear")
-                    .font(.system(size: 14, weight: .medium))
-            }
-            .simultaneousGesture(TapGesture().onEnded {
-                NSApp.activate(ignoringOtherApps: true)
-            })
-            .buttonStyle(.plain)
-
-            Spacer()
-
-            Button {
-                NSApplication.shared.terminate(nil)
-            } label: {
-                Image(systemName: "power")
-                    .font(.system(size: 14, weight: .medium))
-            }
-            .buttonStyle(.plain)
-        }
-        .padding(16)
-    }
-
-    // MARK: - Helpers
 
     private var phaseColor: Color {
         timerManager.isBreak ? .green : .purple
@@ -134,22 +136,31 @@ struct MenuView: View {
             ? Localization.Timer.formattedBreakMessage(seconds: remaining)
             : Localization.Timer.formattedWorkMessage(minutes: max(remaining / 60, 1))
     }
+}
 
-    private var formattedSessionTime: String {
-        let workSeconds = timerManager.totalWorkSeconds + (timerManager.isBreak ? 0 : timerManager.currentPhaseElapsed)
-        let breakSeconds = timerManager.totalBreakSeconds + (timerManager.isBreak ? timerManager.currentPhaseElapsed : 0)
-        var parts: [String] = []
-        if workSeconds > 0 { parts.append(formatDuration(workSeconds, label: Localization.Timer.statFocus.key)) }
-        if breakSeconds > 0 { parts.append(formatDuration(breakSeconds, label: Localization.Timer.statAway.key)) }
-        return parts.joined(separator: " · ")
-    }
+// MARK: - Action Buttons
 
-    private func formatDuration(_ seconds: Int, label: String) -> String {
-        let h = seconds / 3600
-        let m = (seconds % 3600) / 60
-        let s = seconds % 60
-        if h > 0 { return "\(h)h \(m)m \(label)" }
-        if m > 0 { return "\(m)m \(label)" }
-        return "\(s)s \(label)"
+private struct MenuActionButtonsSection: View {
+    var body: some View {
+        HStack {
+            SettingsLink {
+                Image(systemName: "gear")
+                    .font(.callout)
+            }
+            .simultaneousGesture(TapGesture().onEnded {
+                NSApp.activate(ignoringOtherApps: true)
+            })
+            .buttonStyle(.plain)
+            .accessibilityLabel("Settings")
+
+            Spacer()
+
+            Button("Quit", systemImage: "power") {
+                NSApplication.shared.terminate(nil)
+            }
+            .labelStyle(.iconOnly)
+            .buttonStyle(.plain)
+        }
+        .padding(16)
     }
 }

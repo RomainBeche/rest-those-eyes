@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Behavior" : {
+
+    },
     "Break duration:" : {
       "localizations" : {
         "en" : {
@@ -33,6 +36,12 @@
           }
         }
       }
+    },
+    "Launch at Login Failed" : {
+
+    },
+    "Notifications" : {
+
     },
     "notifications.body" : {
       "extractionState" : "manual",
@@ -102,6 +111,12 @@
         }
       }
     },
+    "Pause timer" : {
+
+    },
+    "Quit" : {
+
+    },
     "RestThoseEyes" : {
 
     },
@@ -121,6 +136,12 @@
           }
         }
       }
+    },
+    "Resume timer" : {
+
+    },
+    "Settings" : {
+
     },
     "settings.behavior" : {
       "extractionState" : "manual",
@@ -240,11 +261,16 @@
         }
       }
     },
+    "Support" : {
+
+    },
+    "The app could not be registered to launch at login." : {
+
+    },
     "The changes will take effect starting with the next phase." : {
 
     },
     "Timer" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

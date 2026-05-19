@@ -10,24 +10,25 @@ import UserNotifications
 
 @main
 struct RestThoseEyesApp: App {
-    @StateObject private var settings = SettingsManager.shared
-    @StateObject private var timerManager = TimerManager()
+    @State private var settings = SettingsManager.shared
+    @State private var timerManager = TimerManager()
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
-        requestNotificationAuthorization()
+        registerNotificationCategories()
     }
 
     var body: some Scene {
         MenuBarExtra {
             MenuView()
-                .environmentObject(settings)
-                .environmentObject(timerManager)
+                .environment(settings)
+                .environment(timerManager)
         } label: {
             Image(systemName: timerManager.isBreak ? "eye.slash.fill" : "eye.fill")
                 .symbolEffect(.bounce, value: timerManager.isBreak)
                 .task {
                     NotificationDelegate.shared.timerManager = timerManager
+                    _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
                 }
         }
         .menuBarExtraStyle(.window)
@@ -35,13 +36,8 @@ struct RestThoseEyesApp: App {
 
         Settings {
             SettingsView()
-                .environmentObject(settings)
+                .environment(settings)
         }
-    }
-
-    private func requestNotificationAuthorization() {
-        registerNotificationCategories()
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
     }
 
     private func registerNotificationCategories() {

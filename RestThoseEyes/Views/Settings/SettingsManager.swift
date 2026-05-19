@@ -8,7 +8,7 @@
 import Foundation
 import ServiceManagement
 
-class SettingsManager: ObservableObject {
+@MainActor @Observable final class SettingsManager {
     static let shared = SettingsManager()
 
     private enum Keys {
@@ -19,42 +19,48 @@ class SettingsManager: ObservableObject {
         static let snoozeDurationMinutes = "snoozeDurationMinutes"
     }
 
-    @Published var showNotifications: Bool {
+    var showNotifications: Bool {
         didSet {
             UserDefaults.standard.set(showNotifications, forKey: Keys.showNotifications)
             if !showNotifications { soundAlerts = false }
         }
     }
 
-    @Published var soundAlerts: Bool {
+    var soundAlerts: Bool {
         didSet { UserDefaults.standard.set(soundAlerts, forKey: Keys.soundAlerts) }
     }
 
-    @Published var workDurationMinutes: Int {
+    var workDurationMinutes: Int {
         didSet { UserDefaults.standard.set(workDurationMinutes, forKey: Keys.workDurationMinutes) }
     }
 
-    @Published var breakDurationSeconds: Int {
+    var breakDurationSeconds: Int {
         didSet { UserDefaults.standard.set(breakDurationSeconds, forKey: Keys.breakDurationSeconds) }
     }
 
-    @Published var snoozeDurationMinutes: Int {
+    var snoozeDurationMinutes: Int {
         didSet { UserDefaults.standard.set(snoozeDurationMinutes, forKey: Keys.snoozeDurationMinutes) }
     }
 
-    @Published var launchAtLogin: Bool {
+    var launchAtLogin: Bool {
         didSet {
             if launchAtLogin {
                 do {
                     try SMAppService.mainApp.register()
                 } catch {
-                    Task { @MainActor [weak self] in self?.launchAtLogin = false }
+                    Task { @MainActor [weak self] in
+                        self?.launchAtLogin = false
+                        self?.launchAtLoginFailed = true
+                    }
                 }
             } else {
                 SMAppService.mainApp.unregister { _ in }
             }
         }
     }
+
+    // Set to true when launch-at-login registration fails, triggers an alert in the UI.
+    var launchAtLoginFailed = false
 
     private init() {
         let defaults = UserDefaults.standard

@@ -6,23 +6,22 @@
 //
 
 import SwiftUI
-import AppKit
 import UserNotifications
 
-@MainActor final class TimerManager: ObservableObject {
-    @Published var currentTimer: CircularProgressionBarViewModel {
+@MainActor @Observable final class TimerManager {
+    var currentTimer: CircularProgressionBarViewModel {
         didSet {
             currentPhaseElapsed = 0
             setupTimerLoop()
             currentTimer.startTimer()
         }
     }
-    @Published var isPaused: Bool = false
-    @Published var isBreak: Bool = false
-    @Published var totalWorkSeconds: Int = 0
-    @Published var totalBreakSeconds: Int = 0
-    @Published var breaksTakenToday: Int = 0
-    @Published var currentPhaseElapsed: Int = 0
+    var isPaused = false
+    var isBreak = false
+    var totalWorkSeconds = 0
+    var totalBreakSeconds = 0
+    var breaksTakenToday = 0
+    var currentPhaseElapsed = 0
 
     private let settings = SettingsManager.shared
     private let snoozeIncrement = 300     // 5 minutes
@@ -151,6 +150,7 @@ private extension TimerManager {
 }
 
 // MARK: - Notification Extensions
+@MainActor
 private extension UNMutableNotificationContent {
     func configuredContent() -> UNMutableNotificationContent {
         self.title = Localization.Notifications.title.key

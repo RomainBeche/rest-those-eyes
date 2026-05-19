@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AppKit
 
 // MARK: - Settings Tab
 
@@ -41,7 +40,6 @@ private enum SettingsTab: String, CaseIterable, Identifiable {
 // MARK: - Main View
 
 struct SettingsView: View {
-    @EnvironmentObject var settings: SettingsManager
     @State private var selection: SettingsTab? = .timer
 
     var body: some View {
@@ -86,7 +84,7 @@ private final class SettingsWindowView: NSView {
         applyWindowStyle(window)
         // Defer sidebar locking one cycle so NavigationSplitView's
         // NSSplitViewController is fully installed before we query it.
-        DispatchQueue.main.async { [weak window] in
+        Task { @MainActor [weak window] in
             guard let window, let contentView = window.contentView else { return }
             Self.lockSidebar(in: contentView)
         }
@@ -127,7 +125,7 @@ private struct SettingsIcon: View {
 
     var body: some View {
         Image(systemName: systemName)
-            .font(.system(size: 12, weight: .semibold))
+            .font(.caption.bold())
             .foregroundStyle(color)
             .frame(width: 28, height: 28)
             .background(RoundedRectangle(cornerRadius: 7).fill(color.opacity(0.12)))
@@ -143,9 +141,10 @@ private extension View {
 // MARK: - Timer Detail
 
 private struct TimerDetailView: View {
-    @EnvironmentObject var settings: SettingsManager
+    @Environment(SettingsManager.self) private var settings
 
     var body: some View {
+        @Bindable var settings = settings
         Form {
             Section {
                 Stepper(value: $settings.workDurationMinutes, in: 10...60) {
@@ -177,9 +176,10 @@ private struct TimerDetailView: View {
 // MARK: - Notifications Detail
 
 private struct NotificationDetailView: View {
-    @EnvironmentObject var settings: SettingsManager
+    @Environment(SettingsManager.self) private var settings
 
     var body: some View {
+        @Bindable var settings = settings
         Form {
             Section {
                 Toggle(isOn: $settings.showNotifications) {
@@ -204,9 +204,10 @@ private struct NotificationDetailView: View {
 // MARK: - Behavior Detail
 
 private struct BehaviorDetailView: View {
-    @EnvironmentObject var settings: SettingsManager
+    @Environment(SettingsManager.self) private var settings
 
     var body: some View {
+        @Bindable var settings = settings
         Form {
             Section {
                 Toggle(isOn: $settings.launchAtLogin) {
@@ -218,6 +219,10 @@ private struct BehaviorDetailView: View {
             }
         }
         .detailFormStyle()
+        .alert("Launch at Login Failed", isPresented: $settings.launchAtLoginFailed) {
+        } message: {
+            Text("The app could not be registered to launch at login.")
+        }
     }
 }
 
